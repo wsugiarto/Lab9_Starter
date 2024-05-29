@@ -88,7 +88,7 @@
       <button>Throw Custom Error</button>
     </section>
   </main>
-  <!-- <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
   <script>
     window.TrackJS && TrackJS.install({ 
       token: "96b1779082884d758a21f26ab5982736"
@@ -96,14 +96,9 @@
     });
     TrackJS.track('Testing TrackJS!');
                         
-  </script> -->
+  </script>
                           
-  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js">
-    window.TrackJS && TrackJS.install({ 
-      token: "96b1779082884d758a21f26ab5982736"
-      // for more configuration options, see https://docs.trackjs.com
-    });
-    TrackJS.track('Testing TrackJS!');
+  <script>
 
     class CustomError extends Error {
       constructor(message) {
