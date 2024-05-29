@@ -84,10 +84,40 @@
       <button>End Timer</button>
       <button>Console Trace</button>
       <button>Trigger a Global Error</button>
+      <button>Try/Catch Example</button>
+      <button>Throw Custom Error</button>
     </section>
   </main>
-
+  <!-- <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
   <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "96b1779082884d758a21f26ab5982736"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+    TrackJS.track('Testing TrackJS!');
+                        
+  </script> -->
+                          
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js">
+    window.TrackJS && TrackJS.install({ 
+      token: "96b1779082884d758a21f26ab5982736"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+    TrackJS.track('Testing TrackJS!');
+
+    class CustomError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = "CustomError";
+      }
+    }
+
+    // Global error handler
+    window.onerror = function (message, source, lineno, colno, error) {
+      console.error("Global Error Caught:", message);
+      return true; // Prevent the default browser behavior
+    };
+
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -102,6 +132,111 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+    (errorBtns[0]).addEventListener('click', ()=>{
+      console.log("Console Log Demo");
+    });
+
+    errorBtns[1].addEventListener('click', () => {
+      console.error("Console Error Demo");
+    });
+    errorBtns[2].addEventListener('click', () => {
+      console.count("Console Count Demo");
+    });
+
+    errorBtns[3].addEventListener('click', () => {
+      console.warn("Console Warn Demo");
+    });
+
+    errorBtns[4].addEventListener('click', () => {
+      console.assert(false, "Console Assert Demo");
+    });
+
+    errorBtns[5].addEventListener('click', () => {
+      console.clear();
+      console.log("Console was cleared");
+    });
+
+    errorBtns[6].addEventListener('click', () => {
+      console.dir(errorBtns[6]);
+    });
+
+    errorBtns[7].addEventListener('click', () => {
+      console.dirxml(errorBtns[7]);
+    });
+
+    errorBtns[8].addEventListener('click', () => {
+      console.group("Console Group Demo");
+    });
+
+    errorBtns[9].addEventListener('click', () => {
+      console.groupEnd("Console Group Demo");
+    });
+
+    errorBtns[10].addEventListener('click', () => {
+      console.table([{name: "Software Engineering", nums: 110},
+      {name: "Programming Languages", nums: 130},
+      {name: "Advanced Software Engineering", nums: 112}
+      ]);
+    });
+    errorBtns[11].addEventListener('click', () => {
+      console.time("Timer");
+    });
+
+    errorBtns[12].addEventListener('click', () => {
+      console.timeEnd("Timer");
+    });
+    
+    errorBtns[13].addEventListener('click', () => {
+      function deepest() {
+        console.trace("Console Trace Demo");
+      }
+
+      function deeper() {
+        deepest();
+      }
+
+      function deep() {
+        deeper();
+      }
+
+      function handleBtnClick() {
+        deep();
+      }
+
+      handleBtnClick();
+    });
+    
+    errorBtns[14].addEventListener('click', () => {
+      throw new Error("Sadly an error happened my friend");
+    });
+
+    errorBtns[15].addEventListener('click', () => {
+      try {
+        let element = document.querySelector('#asdfas');
+        if (!element) {
+          throw new Error("Not exist");
+        }
+        element.innerHTML = "This won't be set";
+      } catch (error) {
+        console.error("An error occurred:", error.message);
+      } finally {
+        console.log("This will always execute");
+      }
+    });
+
+    errorBtns[16].addEventListener('click', () => {
+      try {
+        throw new CustomError("This is a custom error");
+      } catch (error) {
+        if (error instanceof CustomError) {
+          console.error("Caught a custom error:", error.message);
+        } else {
+          console.error("Caught an unknown error:", error);
+        }
+      } finally {
+        console.log("Custom error !");
+      }
+    });
   </script>
 </body>
 
