@@ -110,7 +110,7 @@
     // Global error handler
     window.onerror = function (message, source, lineno, colno, error) {
       console.error("Global Error Caught:", message);
-      return true; // Prevent the default browser behavior
+      return true;
     };
 
     let form = document.querySelector('form');
@@ -202,7 +202,7 @@
     });
     
     errorBtns[14].addEventListener('click', () => {
-      throw new Error("Sadly an error happened my friend");
+      throw new Error("This won't send anything anymore.");
     });
 
     errorBtns[15].addEventListener('click', () => {
